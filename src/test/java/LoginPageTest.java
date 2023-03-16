@@ -14,8 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginPageTest {
-    private static final String LOGIN = "";
-    private static final String PASSWORD = "";
+
+    private static final String LOGIN = "dqwejoqi@mail.ru";
+    private static final String PASSWORD = "123123";
     private static final String ERR_LOGIN_STRING = "Неправильно указан логин и/или пароль";
 
     private LoginPage loginPage;
@@ -24,7 +25,6 @@ public class LoginPageTest {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         Configuration.driverManagerEnabled = true;
-        Configuration.baseUrl = "https://ok.ru/";
         Configuration.browser = "chrome";
         Configuration.timeout = 4000;
 
@@ -32,7 +32,7 @@ public class LoginPageTest {
 
     @BeforeEach
     public void openBrowser() {
-        open(Configuration.baseUrl);
+        open("https://ok.ru/");
         loginPage = new LoginPage();
     }
 

@@ -9,11 +9,11 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage implements LoadablePage {
-    private static final By LOGIN_CONTAINER = byXpath("//*[@id=\"tabpanel-login-8760405556\"]");
-    private static final By LOGIN_FIELD = byXpath("//*[@id=\"field_email\"]");
-    private static final By PASSWORD_FIELD = byXpath("//*[@id=\"field_password\"]");
-    private static final By SUBMIT_BTN = byXpath("//*[@id=\"tabpanel-login-8760405556\"]/form/div[4]/input");
-    private static final By INCORRECT_LOG_OR_PASS = byXpath("//*[@id=\"tabpanel-login-8760405556\"]/form/div[3]/div");
+    private static final By LOGIN_CONTAINER = byXpath("//*[@data-state-id=\"login\"]");
+    private static final By LOGIN_FIELD = byXpath("//*[@name=\"st.email\"]");
+    private static final By PASSWORD_FIELD = byXpath("//*[@name=\"st.password\"]");
+    private static final By SUBMIT_BTN = byXpath("//*[@class=\"button-pro __wide\"]");
+    private static final By INCORRECT_LOG_OR_PASS = byXpath("//*[@class=\"input-e login_error\"]");
 
     public LoginPage() {
         checkPage();

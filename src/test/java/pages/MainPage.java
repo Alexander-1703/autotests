@@ -9,8 +9,8 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage implements LoadablePage{
-    private static final By FEED = byXpath("//*[@id=\"hook_Block_UserMainFullMRB\"]");
-    private static final By NAME = byXpath("//*[@id=\"hook_Block_Navigation\"]/div/div/div[1]/a/div");
+    private static final By FEED = byXpath("//*[@class=\"filter filter__nowrap h-mod\"]");
+    private static final By NAME = byXpath("//*[@class=\"tico ellip\"]");
 
     public MainPage() {
         checkPage();
