@@ -1,0 +1,13 @@
+log/
+*.log
+
+*.iml
+.idea/
+.idea_modules/
+
+build/
+.gradle/
+gradle/
+.gradle-cache/
+.gradle-checksums/
+out/
