@@ -6,17 +6,19 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import matchers.VkLoginMatcher;
 import pages.LoginPage;
 import pages.MainPage;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginPageTest {
 
-    private static final String LOGIN = "dqwejoqi@mail.ru";
-    private static final String PASSWORD = "123123";
+    private static final String LOGIN = "botS23AT6";
+    private static final String PASSWORD = "autotests2023";
     private static final String ERR_LOGIN_STRING = "Неправильно указан логин и/или пароль";
 
     private LoginPage loginPage;
@@ -57,7 +59,13 @@ public class LoginPageTest {
                 .setLogin("qwdqwdqdq")
                 .setPassword("wdq23wewef")
                 .submitLogin();
-        assertEquals(loginPage.getErrLoginField(), ERR_LOGIN_STRING,
-                "there is no message about wrong username or password");
+//        assertEquals(loginPage.getErrLoginField(), ERR_LOGIN_STRING,
+//                "there is no message about wrong username or password");
+        assertThat(loginPage.getErrLoginField(), equalToIgnoringCase(ERR_LOGIN_STRING));
+    }
+
+    @Test
+    public void vkLoginTest() {
+        assertThat(true, new VkLoginMatcher());
     }
 }
