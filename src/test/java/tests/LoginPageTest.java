@@ -1,5 +1,10 @@
+package tests;
+
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.codeborne.selenide.Configuration;
@@ -15,6 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Tag("login")
 public class LoginPageTest {
 
     private static final String LOGIN = "botS23AT6";
@@ -23,12 +29,13 @@ public class LoginPageTest {
 
     private LoginPage loginPage;
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         WebDriverManager.chromedriver().setup();
         Configuration.driverManagerEnabled = true;
         Configuration.browser = "chrome";
         Configuration.timeout = 4000;
+        Configuration.headless = true;
 
     }
 
@@ -44,16 +51,18 @@ public class LoginPageTest {
     }
 
     @Test
+    @DisplayName("login test with valid login and password")
     public void validLoginTest() {
         loginPage
                 .setLogin(LOGIN)
                 .setPassword(PASSWORD)
                 .submitLogin();
         MainPage mainPage = new MainPage();
-        assertTrue(mainPage.getNameField().exists(), "Main page didn`load, but was valid login/password");
+        assertTrue(mainPage.getUserNameButton().exists(), "Main page didn`load, but was valid login/password");
     }
 
     @Test
+    @DisplayName("login test with INVALID login and password")
     public void invalidLoginTest() {
         loginPage
                 .setLogin("qwdqwdqdq")
@@ -64,6 +73,7 @@ public class LoginPageTest {
     }
 
     @Test
+    @DisplayName("through vk login button operation test")
     public void vkLoginTest() {
         assertThat(true, new VkLoginMatcher());
     }
