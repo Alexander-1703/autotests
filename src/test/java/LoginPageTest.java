@@ -12,7 +12,7 @@ import pages.MainPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginPageTest {
@@ -59,9 +59,8 @@ public class LoginPageTest {
                 .setLogin("qwdqwdqdq")
                 .setPassword("wdq23wewef")
                 .submitLogin();
-//        assertEquals(loginPage.getErrLoginField(), ERR_LOGIN_STRING,
-//                "there is no message about wrong username or password");
-        assertThat(loginPage.getErrLoginField(), equalToIgnoringCase(ERR_LOGIN_STRING));
+        assertEquals(loginPage.getErrLoginField(), ERR_LOGIN_STRING,
+                "there is no message about wrong username or password");
     }
 
     @Test
