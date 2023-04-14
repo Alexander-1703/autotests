@@ -13,27 +13,29 @@ import static com.codeborne.selenide.Selenide.$$;
 public class GroupPage extends LoadableComponent<GroupPage> {
     private static final By GROUP = byXpath("//*[@class=\"ucard-v __h __none-border soh-s __trimmed\"]");
 
-    private final SelenideElement group = $$(GROUP).first().shouldBe(visible.because("no group element"));
-
     public SelenideElement getRecommendGroupName() {
-        return group.$(By.xpath(".//*[@class=\"group-detailed-card_name\"]"));
+
+        return $$(GROUP).first().shouldBe(visible.because("no group element"))
+                .$(By.xpath(".//*[@class=\"group-detailed-card_name\"]"));
     }
 
     public SelenideElement getGroupEnterButton() {
-        return group.$(By.xpath(".//*[@class=\"button-pro group-join_btn __small __sec\"]"));
+        return $$(GROUP).first().shouldBe(visible.because("no group element"))
+                .$(By.xpath(".//*[@class=\"button-pro group-join_btn __small __sec\"]"));
     }
 
     public SelenideElement getRecommendedGroup() {
-        return group;
+        return $$(GROUP).first().shouldBe(visible.because("no group element"));
     }
 
     @Override
     protected void load() {
-        //already on this page
+        MainPage mainPage = new MainPage().get();
+        mainPage.getGroups().click();
     }
 
     @Override
     protected void isLoaded() throws Error {
-        $(group).shouldBe(visible.because("group page doesn`t load"));
+        $($$(GROUP).first().shouldBe(visible.because("no group element"))).shouldBe(visible.because("group page doesn`t load"));
     }
 }

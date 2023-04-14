@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.bidi.log.Log;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
 import com.codeborne.selenide.SelenideElement;
@@ -15,7 +16,8 @@ public class VkLoginPage extends LoadableComponent<VkLoginPage> {
 
     @Override
     protected void load() {
-        //already on this page
+        LoginPage loginPage = new LoginPage();
+        loginPage.getVkLogin().click();
     }
 
     @Override

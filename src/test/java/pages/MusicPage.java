@@ -19,7 +19,8 @@ public class MusicPage extends LoadableComponent<MusicPage> {
 
     @Override
     protected void load() {
-        //already on this page
+        MainPage mainPage = new MainPage();
+        mainPage.getMusicButton().click();
     }
 
     @Override

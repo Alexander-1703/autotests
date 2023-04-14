@@ -1,16 +1,9 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 import matchers.VkLoginMatcher;
 import pages.LoginPage;
 import pages.MainPage;
@@ -20,34 +13,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag("login")
-public class LoginPageTest {
+public class CheckLoginTest extends BaseTest {
 
-    private static final String LOGIN = "botS23AT6";
-    private static final String PASSWORD = "autotests2023";
-    private static final String ERR_LOGIN_STRING = "Неправильно указан логин и/или пароль";
+    private static final String LOGIN = "";
+        private static final String PASSWORD = "";
 
     private LoginPage loginPage;
-
-    @BeforeAll
-    public static void setUp() {
-        WebDriverManager.chromedriver().setup();
-        Configuration.driverManagerEnabled = true;
-        Configuration.browser = "chrome";
-        Configuration.timeout = 4000;
-        Configuration.headless = true;
-
-    }
 
     @BeforeEach
     public void openBrowser() {
         open("https://ok.ru/");
         loginPage = new LoginPage();
-    }
-
-    @AfterEach
-    public void closeBrowser() {
-        Selenide.closeWebDriver();
     }
 
     @Test
@@ -68,7 +44,7 @@ public class LoginPageTest {
                 .setLogin("qwdqwdqdq")
                 .setPassword("wdq23wewef")
                 .submitLogin();
-        assertEquals(loginPage.getErrLoginField(), ERR_LOGIN_STRING,
+        assertEquals(loginPage.getErrLoginField(), "Неправильно указан логин и/или пароль",
                 "there is no message about wrong username or password");
     }
 

@@ -10,8 +10,8 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage extends LoadableComponent<MainPage> {
-    private static final String LOGIN = "botS23AT6";
-    private static final String PASSWORD = "autotests2023";
+    private static final String LOGIN = "";
+    private static final String PASSWORD = "";
 
     private static final By FEED = byXpath("//*[@class=\"filter filter__nowrap h-mod\"]");
     private static final By USER_NAME_BUTTON = byXpath("//*[@class=\"tico ellip\"]");

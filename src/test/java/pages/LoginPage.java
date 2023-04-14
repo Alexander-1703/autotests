@@ -4,8 +4,10 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage extends LoadableComponent<LoginPage> {
@@ -14,6 +16,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
     private static final By PASSWORD_FIELD = byXpath("//*[@name=\"st.password\"]");
     private static final By SUBMIT_BTN = byXpath("//*[@class=\"button-pro __wide\"]");
     private static final By INCORRECT_LOG_OR_PASS = byXpath("//*[@class=\"input-e login_error\"]");
+    private static final By VK_LOGIN_ICON = byXpath("//*[@class=\"i ic social-icon __s __vk_id\"]");
 
     @Override
     protected void load() {
@@ -43,6 +46,10 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 
     public String getErrLoginField() {
         return $(INCORRECT_LOG_OR_PASS).shouldBe(visible.because("No err login field")).text();
+    }
+
+    public SelenideElement getVkLogin() {
+        return $(VK_LOGIN_ICON).shouldBe(visible.because("No vk login button"));
     }
 
 }
